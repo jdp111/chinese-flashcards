@@ -1,21 +1,28 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  
+  useEffect(()=>{
+    async function effect() {
+    const localToken = localStorage.getItem('token') || null
+    const localUser = localStorage.getItem('username') || null
+    
+    if (localToken && localUser) {
+      const {username, firstName, lastName, email}  = await JoblyApi.getUser(localUser)
+      setCurrentUser({username, firstName, lastName, email} )
+    }
+  } effect()
+  },[])
+
+  
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+        <a>
         </a>
       </header>
     </div>
