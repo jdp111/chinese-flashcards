@@ -33,7 +33,7 @@ function App() {
           <Routes>
             <Route/>
             <Route exact="true" path = '/' element={<Home username = {username}/>}/>
-            <Route exact="true" path = '/login' element={<Login username = {username}/>}/>
+            <Route exact="true" path = '/login' element={<Login username = {username} setUsername = {setUsername}/>}/>
             <Route exact="true" path = '/register' element = {<Register username = {username}/>}/>
             
             <Route/>

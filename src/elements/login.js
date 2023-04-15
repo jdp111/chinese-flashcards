@@ -1,5 +1,6 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate}  from "react-router-dom";
+
 import HskApi from '../api'
 import '../styles/login.css'
 import { ToastContainer, toast } from 'react-toastify';
@@ -18,36 +19,36 @@ import {
   Input
 } from "reactstrap";
 
-function Login(props){
+function Login({username, setUsername}){
     const history = useNavigate()
-  const [username, setUsername] = React.useState("");
+  const [usernameInput, setUsernameInput] = React.useState("");
   const [password, setPassword] = React.useState("");
-  
-  if (props.username){
+
+  if(username){
     history('/')
   }
 
   const loginHandler = async (ev) => {
     ev.preventDefault();
     try{
-      if (!username || !password) {
+      if (!usernameInput || !password) {
         return;
       }
 
       
       const result = await HskApi.login({
-        "username": username,
+        "username": usernameInput,
         "password": password
       })
 
-      localStorage.setItem("username",username)
+      localStorage.setItem("username",usernameInput)
       localStorage.setItem("token", result.token)
-
-      history('/')
+      setUsername(usernameInput)
+      history('/login')
 
     }catch(e){e.map((err)=>{toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
   };
-
+  console.log("e")
   return (
     <Container className="body-space">
       <ToastContainer/>
@@ -55,15 +56,15 @@ function Login(props){
             <CardBody>
               <Form onSubmit={loginHandler}>
                 <FormGroup>
-                  <Label for="username" className="mr-sm-2">
+                  <Label for="usernameInput" className="mr-sm-2">
                     Email
                   </Label>
                   <Input className="text-box"
                     type="text"
-                    name="username"
-                    id="username"
+                    name="usernameInput"
+                    id="usernameInput"
                     placeholder="user345345"
-                    onChange={(ev) => setUsername(ev.currentTarget.value)}
+                    onChange={(ev) => setUsernameInput(ev.currentTarget.value)}
                   />
                 </FormGroup>
                 <FormGroup>
@@ -86,7 +87,6 @@ function Login(props){
           </Card>
         <br></br>
         <a href = "/register">Don't have an account? signup here</a>
-
     </Container>
   );
 };
