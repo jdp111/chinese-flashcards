@@ -7,7 +7,6 @@ import {Container,Button} from "reactstrap";
 
 function Home({username}){
     const history = useNavigate()
-    console.log("SDfesf")
     return(
         <Container className="body-space homepage">
             

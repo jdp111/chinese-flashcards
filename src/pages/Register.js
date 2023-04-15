@@ -47,7 +47,6 @@ function Register(props){
         "password": password
       })
       
-      console.log(result)
       localStorage.setItem("username",username)
       localStorage.setItem("token", result.token)
 

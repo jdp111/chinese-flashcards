@@ -46,10 +46,11 @@ function Login({username, setUsername}){
 
     }catch(e){e.map((err)=>{toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
   };
-  console.log("e")
   return (
     <Container className="body-space">
+      
       <ToastContainer/>
+      <h2>Login</h2>
           <Card className="login-card">
             <CardBody>
               <Form onSubmit={loginHandler}>

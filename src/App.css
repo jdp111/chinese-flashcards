@@ -44,8 +44,10 @@ code {
 .body-space {
   background-image:url('../public/pics/chinese.png');
   background-size: contain;
-  margin-top: 100px;
+  margin-top: 90px;
   width: 100%;
+  padding-top: 120px;
   padding-bottom: 80px;
+  min-height: calc(100vh);
 
 }
