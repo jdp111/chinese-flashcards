@@ -2,16 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -54,7 +44,7 @@ code {
 .body-space {
   background-image:url('../public/pics/chinese.png');
   background-size: contain;
-  margin-top: 3%;
+  margin-top: 100px;
   width: 100%;
   padding-bottom: 80px;
 

@@ -6,6 +6,7 @@ import './App.css';
 import Navbar from "./elements/Navbar.js"
 import Login from "./elements/login.js"
 import Register from "./elements/Register.js"
+import Home from "./elements/Home.js"
 
 function App() {
   const defaultUser = null
@@ -30,9 +31,11 @@ function App() {
 
         <main>
           <Routes>
+            <Route/>
+            <Route exact="true" path = '/' element={<Home username = {username}/>}/>
             <Route exact="true" path = '/login' element={<Login username = {username}/>}/>
             <Route exact="true" path = '/register' element = {<Register username = {username}/>}/>
-            <Route/>
+            
             <Route/>
           </Routes>
         </main>
