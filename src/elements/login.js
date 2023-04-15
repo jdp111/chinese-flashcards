@@ -40,14 +40,16 @@ function Login(props){
         "password": password
       })
 
-      console.log(result)
+      localStorage.setItem("username",username)
+      localStorage.setItem("token", result.token)
 
-      
+      history('/')
+
     }catch(e){e.map((err)=>{toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
   };
 
   return (
-    <Container className="login-container">
+    <Container className="body-space">
       <ToastContainer/>
           <Card className="login-card">
             <CardBody>

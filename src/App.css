@@ -53,6 +53,8 @@ code {
 
 .body-space {
   background-image:url('../public/pics/chinese.png');
-  background-size: cover;
-  padding-bottom: 30%;
+  background-size: contain;
+  margin-top: 3%;
+  width: 100%
+
 }

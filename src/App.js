@@ -27,7 +27,7 @@ function App() {
       <BrowserRouter>
         <Navbar expand = {true} fixed = {"top"} username = {username}/>
 
-        <main className='body-space'>
+        <main>
           <Routes>
             <Route exact="true" path = '/login' element={<Login username = {username}/>}/>
             <Route/>
