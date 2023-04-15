@@ -12,7 +12,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
 } from 'reactstrap';
 
 function NavbarSetup(args) {
@@ -24,27 +23,38 @@ function NavbarSetup(args) {
     <div>
       <Navbar className='nav-master' {...args}>
         
-        <NavbarBrand className='nav-title' href="/">reactstrap</NavbarBrand>
+        <NavbarBrand className='nav-title' href="/">CHINESELEARN</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav tabs = {true} fill = {true} className="me-auto" navbar>
             <NavItem>
-              <NavLink className='navigator' href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className='navigator' href="https://github.com/reactstrap/reactstrap">
-                GitHub
+              <NavLink className='navigator' href="/test">
+                New Test
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink className='navigator' href="/add">
+                Add Cards
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className='navigator' href="/add">
+                Search Document
+              </NavLink>
+            </NavItem>
+
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 Options
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Reset</DropdownItem>
+                <DropdownItem>
+                  <NavItem href="/test">Current Cards</NavItem>
+              </DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>
+                  <NavItem href="/test">Completed Cards</NavItem>
+              </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

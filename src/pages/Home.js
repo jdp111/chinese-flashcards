@@ -1,23 +1,9 @@
 import React from "react";
-import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import HskApi from '../api'
 import '../styles/Home.css'
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input
-} from "reactstrap";
+import {Container,Button} from "reactstrap";
 
 function Home({username}){
     const history = useNavigate()

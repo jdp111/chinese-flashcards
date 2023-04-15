@@ -8,8 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import {
   Container,
-  Row,
-  Col,
   Card,
   CardBody,
   Button,

@@ -3,10 +3,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
 import HskApi from "./api"
 import './App.css';
-import Navbar from "./elements/Navbar.js"
-import Login from "./elements/login.js"
-import Register from "./elements/Register.js"
-import Home from "./elements/Home.js"
+import Navbar from "./pages/Navbar.js"
+import Login from "./pages/login.js"
+import Register from "./pages/Register.js"
+import Home from "./pages/Home.js"
+import Add from "./pages/Add.js"
 
 function App() {
   const defaultUser = null
@@ -27,16 +28,39 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar expand = {true} fixed = {"top"} username = {username}/>
-
         <main>
           <Routes>
             <Route/>
-            <Route exact="true" path = '/' element={<Home username = {username}/>}/>
-            <Route exact="true" path = '/login' element={<Login username = {username} setUsername = {setUsername}/>}/>
-            <Route exact="true" path = '/register' element = {<Register username = {username}/>}/>
+            <Route exact="true" path = '/' element={
+              <div>
+                <Navbar expand = {true} fixed = {"top"} username = {username}/>
+                <Home username = {username}/>
+              </div>}
+            />
+
+            <Route exact="true" path = '/login' element={
+              <div>
+                <Navbar expand = {true} fixed = {"top"} username = {username}/>
+                <Login username = {username} setUsername = {setUsername}/>
+              </div>}
+            />
+
+            <Route exact="true" path = '/register' element = {
+              <div>
+                <Navbar expand = {true} fixed = {"top"} username = {username}/>
+                <Register username = {username}/>
+              </div>}
+            />
+
+            <Route exact = 'true' path = '/add' element= {
+              <div>
+                <Navbar expand = {true} fixed = {"top"} username = {username}/>
+                <Add username = {username}/>
+              </div>}
+            />
+
+
             
-            <Route/>
           </Routes>
         </main>
       </BrowserRouter>
