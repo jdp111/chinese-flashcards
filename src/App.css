@@ -55,6 +55,7 @@ code {
   background-image:url('../public/pics/chinese.png');
   background-size: contain;
   margin-top: 3%;
-  width: 100%
+  width: 100%;
+  padding-bottom: 80px;
 
 }

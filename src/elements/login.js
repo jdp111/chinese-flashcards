@@ -62,7 +62,7 @@ function Login(props){
                     type="text"
                     name="username"
                     id="username"
-                    placeholder="something@idk.cool"
+                    placeholder="user345345"
                     onChange={(ev) => setUsername(ev.currentTarget.value)}
                   />
                 </FormGroup>
@@ -74,7 +74,7 @@ function Login(props){
                     type="password"
                     name="password"
                     id="examplePassword"
-                    placeholder="don't tell!"
+                    placeholder="password"
                     onChange={(ev) => setPassword(ev.currentTarget.value)}
                   />
                 </FormGroup>
@@ -84,6 +84,9 @@ function Login(props){
               </Form>
             </CardBody>
           </Card>
+        <br></br>
+        <a href = "/register">Don't have an account? signup here</a>
+
     </Container>
   );
 };
