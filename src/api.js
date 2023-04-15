@@ -84,4 +84,4 @@ class HskApi {
 
 }
 
-export default JoblyApi;
+export default HskApi;

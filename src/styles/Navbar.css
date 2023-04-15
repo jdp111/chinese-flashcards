@@ -1,0 +1,23 @@
+.nav-master {
+    background-image:url('../../public/pics/taiwan_america.png');
+    background-size: cover;
+}
+
+.nav-title {
+    color:crimson;
+    font-weight: bolder;
+    font-size: larger;
+    
+}
+
+.navigator {
+    color:black;
+    font-weight: bolder;
+}
+
+.me-auto{
+    color:black;
+    margin-left: 40px;
+    margin-top: 10px;
+    font-weight: bolder;
+}
