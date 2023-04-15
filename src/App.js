@@ -4,9 +4,10 @@ import { Route, Routes } from "react-router-dom";
 import HskApi from "./api"
 import './App.css';
 import Navbar from "./elements/Navbar.js"
+import Login from "./elements/login.js"
 
 function App() {
-  const defaultUser = ""
+  const defaultUser = null
   const [username, setUsername] = useState(defaultUser)
 
   useEffect(()=>{
@@ -24,16 +25,21 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Navbar expand = {true} fixed = {"top"}/>
+        <Navbar expand = {true} fixed = {"top"} username = {username}/>
 
-        <main>
+        <main className='body-space'>
           <Routes>
-
+            <Route exact="true" path = '/login' element={<Login username = {username}/>}/>
+            <Route/>
+            <Route/>
+            <Route/>
           </Routes>
         </main>
       </BrowserRouter>
     </div>
   );
 }
+
+
 
 export default App;

@@ -15,7 +15,7 @@ import {
   NavbarText,
 } from 'reactstrap';
 
-function Example(args) {
+function NavbarSetup(args) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -48,12 +48,17 @@ function Example(args) {
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
-          <NavLink className='navigator' href = "www.google.com" >Simple Text</NavLink>
 
+          {args.username?
+            <NavLink className='navigator' href = "/login" >Manage Account</NavLink>
+            :
+            <NavLink className='navigator' href = "/login" >Login/Register</NavLink>
+          }
+          
         </Collapse>
       </Navbar>
     </div>
   );
 }
 
-export default Example;
+export default NavbarSetup;

@@ -50,3 +50,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.body-space {
+  background-image:url('../public/pics/chinese.png');
+  background-size: cover;
+  padding-bottom: 30%;
+}

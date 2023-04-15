@@ -1,0 +1,22 @@
+.login-card{
+    position: absolute;
+    margin-top: 150px;
+    width: 60%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.login-container {
+    width: 50%;
+}
+
+.text-box {
+    width: 50px;
+}
+
+.toast-message{
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 1rem 0.5rem;
+}

@@ -29,13 +29,13 @@ class HskApi {
   }
 
   static async login(userInfo){
-    let res = await this.request(`auth/token`,userInfo, "get");
-    return res.token
+    let res = await this.request(`auth/token`,userInfo, "post");
+    return res
   }
 
   static async register(userInfo){
     let res = await this.request(`auth/register`,userInfo, "post");
-    return res.token
+    return res
   }
 
   static async getCardsByUser(username){
