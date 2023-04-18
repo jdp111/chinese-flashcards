@@ -1,25 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import '../styles/Home.css'
 import 'react-toastify/dist/ReactToastify.css';
-import HskApi from "../api.js";
 import {
-  Container,
   Row,
   Col,
   Card,
   CardBody,
   Button,
-  Form,
-  FormGroup,
-  Label,
-  Input
 } from "reactstrap";
 
 
 
 
-function ListCard({traditional, simplified, pinyin, english}){
+function ListCard({traditional, simplified, pinyin, english, inDeck}){
 
     return(<Card>
         <CardBody>
@@ -34,13 +27,15 @@ function ListCard({traditional, simplified, pinyin, english}){
         <Col>
         {pinyin}
         </Col>
-        <Col>
+        <Col md = {5} >
         {english}
         </Col>
         <Col>
+        { !inDeck &&
         <Button size='sm' color='success'>
         Add To Deck
         </Button>
+        }
         </Col>
         </Row>
     </CardBody>

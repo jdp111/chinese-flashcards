@@ -25,14 +25,16 @@ function Add({username}){
   const [searchTerm, setSearchTerm] = useState('')
   const [searchBy, setSearchBy] = useState('english')
   const [searchedCards, setSearchedCards] = useState([])
+  const [searched, setSearched] = useState(false)
   
   if (!username) history('/')
 
   const handleSearch = async (evt) =>{
+    setSearched(searchTerm)
     evt.preventDefault();
-    const userCards = await HskApi.getCardsByUser(username)
+    let userCards = await HskApi.getCardsByUser(username)
     userCards = userCards.map((el)=>el.simplified)
-    console.log(userCards)
+    
     const cards = await HskApi.getWords(searchBy,searchTerm)
     for (let card of cards){
       if(userCards.includes(card.simplified)){
@@ -41,11 +43,10 @@ function Add({username}){
       }
       card.inDeck = false
     }
+    setSearchedCards(cards)
     console.log(cards)
     return
   }
-  
-  console.log(searchBy)
 
   return(
     <Container className="body-space">
@@ -114,7 +115,7 @@ function Add({username}){
     </Col>
     <Col>
       <label></label>
-      <Button size='lg' className="">
+      <Button color = 'info' size='lg' className="">
         Submit
       </Button>
     </Col>
@@ -124,9 +125,25 @@ function Add({username}){
   </Form>
   </CardBody>
   </Card>
-
-  <ListCard english = "English" simplified='Simplified' traditional='Traditional' pinyin='Pinyin' />
+    { searched &&
+    <div>
+    <ListCard english = "English" simplified='Simplified' traditional='Traditional' pinyin='Pinyin' inDeck = {true} />
     
+    {searchedCards.map((card)=>{
+      return <ListCard english = {card.english} simplified = {card.simplified} traditional = {card.traditional} pinyin = {card.pinyin} inDeck = {card.inDeck}  />
+    })}
+    
+    {
+      !searchedCards[0] &&
+      <Card>
+        <CardTitle tag = 'h5' style = {{'paddingTop': "10px"}}>
+           No results found from search: '{searched}'
+        </CardTitle>
+       
+      </Card>
+    }
+    </div>
+    }
   </Container>
   
   )
