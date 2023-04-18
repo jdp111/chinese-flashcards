@@ -57,7 +57,7 @@ class HskApi {
 
   static async addCards(username, cards){
     let endpoint = `cards/add/${username}`
-    let data = {"cards": cards}
+    let data = {"cards": [...cards]}
     let res = await this.request(endpoint, data,"post")
     return res
   }

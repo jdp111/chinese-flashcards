@@ -127,10 +127,24 @@ function Add({username}){
   </Card>
     { searched &&
     <div>
-    <ListCard english = "English" simplified='Simplified' traditional='Traditional' pinyin='Pinyin' inDeck = {true} />
+    <ListCard english = "English" 
+      simplified='Simplified' 
+      traditional='Traditional' 
+      pinyin='Pinyin' 
+      inDeck = {true} 
+      username = {username} 
+      id = {0}
+      key = {0}/>
     
     {searchedCards.map((card)=>{
-      return <ListCard english = {card.english} simplified = {card.simplified} traditional = {card.traditional} pinyin = {card.pinyin} inDeck = {card.inDeck}  />
+      return (<ListCard english = {card.english} 
+                simplified = {card.simplified}
+                traditional = {card.traditional} 
+                pinyin = {card.pinyin} 
+                inDeck = {card.inDeck} 
+                username = {username} 
+                key = {card.id} 
+                id = {card.id}  />)
     })}
     
     {
