@@ -1,32 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/Auto.css'
 import 'react-toastify/dist/ReactToastify.css';
-import HskApi from "../api.js";
-import ListCard from "../elements/ListCard.js";
-import Footer from "../elements/Footer.js"
+
 import {
   Container,
-  Row,
-  Col,
-  Card,
-  CardTitle,
-  CardBody,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input
+  Row
 } from "reactstrap";
 import AddButton from "../elements/AddLevelButton";
 
 
 function Add({username}){
   const history = useNavigate()
-
-
-
-
 
   return (
     <Container className="body-space">
@@ -39,7 +24,6 @@ function Add({username}){
         <AddButton lvl = "4" grade = "Middle School"  username = {username}/>
         <AddButton lvl = "5" grade = "High School"  username = {username}/>
         <AddButton lvl = "6" grade = "College"  username = {username}/>
-        
         
     </Row>
     <br></br>

@@ -3,6 +3,7 @@ import '../styles/Home.css'
 import HskApi from "../api";
 import { useNavigate } from "react-router-dom";
 import {Col, Button} from "reactstrap";
+import { ToastContainer, toast } from "react-toastify";
 
 
 
@@ -23,6 +24,7 @@ function AddButton({lvl, grade, username}){
 
 
     const AddLvl = async (evt) => {
+        try{
         evt.preventDefault()
         const userCards = await HskApi.getCardsByUser(username)
         const finishedCards  = await HskApi.getCardsByUserGroup(username, 11)
@@ -32,13 +34,16 @@ function AddButton({lvl, grade, username}){
         let wordIndex = 0
         let cardIndex = 0 
         let i = Math.max((userCards.length-finishedCards.length ), 0)
-        console.log(i, userCards.length)
+        if (i >=100){
+            throw [`You already have 100 flashcards in your unlearned collection, you cannot add any more`]
+        }
 
         while (i <= 100){
-          if (wordIndex >= lvlWords.length) break
+          if (wordIndex >= lvlWords.length){
+            break
+          }
     
           if (cardIndex >= userCards.length){
-            console.log("adding from 1")
             cardsToAdd.push(lvlWords[wordIndex].id)
             wordIndex +=1
             i +=1
@@ -50,7 +55,6 @@ function AddButton({lvl, grade, username}){
           }
 
           if (lvlWords[wordIndex].id == userCards[cardIndex].word_id){
-            console.log("have a duplicate word, not adding", wordIndex, cardIndex, userCards[cardIndex].word_id)
             wordIndex += 1
             cardIndex +=1
             continue
@@ -60,14 +64,17 @@ function AddButton({lvl, grade, username}){
           wordIndex +=1
           i += 1
         }
-
+        if(cardsToAdd.length == 0){
+            throw ["You have already added all cards from this level to your "]
+        }
         const result = await HskApi.addCards(username, cardsToAdd)
-        console.log(result)
-         
+        
+        }catch(e){e.map((err)=>{toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
     }
 
     return(
     <Col>
+        <ToastContainer/>
         <Button name = {lvl} size = 'lg' color = "success" onClick={AddLvl}> 
             <h5>Level {lvl}</h5>
             <p>{grade}</p>

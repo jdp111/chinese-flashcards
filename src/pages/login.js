@@ -50,7 +50,7 @@ function Login({username, setUsername}){
   return (
     <Container className="body-space">
       
-      <ToastContainer/>
+      <ToastContainer style={{width:"50%"}}/>
       <h2>Login</h2>
           <Card className="login-card">
             <CardBody>
