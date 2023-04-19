@@ -1,0 +1,28 @@
+.flashcard-front {
+    font-size: 25px;
+    position:fixed;
+    width: 68%;
+    margin-left: 16%;
+    margin-right: 16%;
+    
+}
+
+.flashcard-chinese {
+    font-size: 55px;
+}
+
+.english {
+    text-indent: 10%;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 22px;
+}
+
+.pinyin {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.chinese {
+    font-size: 25px;
+}

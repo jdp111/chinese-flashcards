@@ -9,6 +9,7 @@ import Register from "./pages/Register.js"
 import Home from "./pages/Home.js"
 import Add from "./pages/Add.js"
 import AutoAdd from "./pages/AutoStart.js"
+import Quiz from './pages/Quiz';
 
 function App() {
   const defaultUser = null
@@ -64,6 +65,12 @@ function App() {
               <div>
                 <Navbar expand = {true} fixed = {"top"} username = {username}/>
                 <AutoAdd username = {username}/>
+              </div>}
+            />
+            
+            <Route exact = 'true' path = '/test' element= {
+              <div>
+                <Quiz username = {username}/>
               </div>}
             />
 
