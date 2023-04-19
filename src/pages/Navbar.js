@@ -44,7 +44,7 @@ function NavbarSetup(args) {
             </NavItem>
 
             <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
+              <DropdownToggle className='navigator' nav caret>
                 Options
               </DropdownToggle>
               <DropdownMenu right>

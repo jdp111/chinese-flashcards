@@ -9,10 +9,11 @@ import {
   CardTitle,
   CardText
 } from 'reactstrap';
+import { useNavigate } from "react-router-dom";
 
 
 function Footer(){
-
+    const history = useNavigate()
     return(
       <Card
       body
@@ -25,7 +26,7 @@ function Footer(){
       <CardText>
         If you are unsure which words to learn, an automatic deck will allow you to add cards to your deck based on your skill level  
       </CardText>
-      <Button color='info' size="lg">
+      <Button color='info' size="lg" onClick={() => history('/auto-add')}>
         Auto-Add
       </Button>
     </Card>

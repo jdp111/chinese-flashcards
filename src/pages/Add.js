@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/Home.css'
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,9 +26,8 @@ function Add({username}){
   const [searchBy, setSearchBy] = useState('english')
   const [searchedCards, setSearchedCards] = useState([])
   const [searched, setSearched] = useState(false)
-  
-  if (!username) history('/')
 
+  
   const handleSearch = async (evt) =>{
     setSearched(searchTerm)
     evt.preventDefault();

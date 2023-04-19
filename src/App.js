@@ -8,6 +8,7 @@ import Login from "./pages/login.js"
 import Register from "./pages/Register.js"
 import Home from "./pages/Home.js"
 import Add from "./pages/Add.js"
+import AutoAdd from "./pages/AutoStart.js"
 
 function App() {
   const defaultUser = null
@@ -16,8 +17,8 @@ function App() {
   useEffect(()=>{
     async function effect() {
     const localToken = localStorage.getItem('token') || null
-    const localUser = localStorage.getItem('username') || null
-    console.log("local storage username value", localUser)
+    const localUser =  localStorage.getItem('username') || null
+    
     if (localToken && localUser) {
       setUsername(localUser )
     }
@@ -56,6 +57,13 @@ function App() {
               <div>
                 <Navbar expand = {true} fixed = {"top"} username = {username}/>
                 <Add username = {username}/>
+              </div>}
+            />
+
+            <Route exact = 'true' path = '/auto-add' element= {
+              <div>
+                <Navbar expand = {true} fixed = {"top"} username = {username}/>
+                <AutoAdd username = {username}/>
               </div>}
             />
 

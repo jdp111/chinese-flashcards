@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navigate, useNavigate}  from "react-router-dom";
 
 import HskApi from '../api'
@@ -22,9 +22,10 @@ function Login({username, setUsername}){
   const [usernameInput, setUsernameInput] = React.useState("");
   const [password, setPassword] = React.useState("");
 
+  useEffect(()=>{
   if(username){
     history('/')
-  }
+  }})
 
   const loginHandler = async (ev) => {
     ev.preventDefault();
