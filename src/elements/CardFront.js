@@ -7,17 +7,10 @@ import ListCard from "../elements/ListCard.js";
 import Footer from "../elements/Footer.js"
 import "../styles/Cards.css"
 import {
-  Container,
   Row,
-  Col,
   Card,
-  CardTitle,
   CardBody,
   Button,
-  Form,
-  FormGroup,
-  Label,
-  Input
 } from "reactstrap";
 
 

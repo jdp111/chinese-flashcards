@@ -4,7 +4,7 @@ import '../styles/Home.css'
 import 'react-toastify/dist/ReactToastify.css';
 import HskApi from "../api.js";
 import ListCard from "../elements/ListCard.js";
-import Footer from "../elements/Footer.js"
+
 import {
   Container,
   Row,
@@ -20,7 +20,7 @@ import {
 } from "reactstrap";
 import CardFront from "../elements/CardFront";
 import CardBack from "../elements/CardBack";
-
+import StartCard from "../elements/StartCard.js"
 
 function Quiz({username}){
   const history = useNavigate()
@@ -28,19 +28,86 @@ function Quiz({username}){
   const [current, setCurrent] = useState(0)
   const [correct, setCorrect] = useState(0)
   const [cards, setCards] = useState([])
+  const [start, setStart] = useState(false)
+  const [currCard, setCurrCard] = useState({"simplified":"", "traditional":"", "pinyin":"","english":""}) 
   
+  async function fetchData(user){
+    let allCards = []
+    const userSession = await HskApi.GetSession(user)
+    const session = userSession.session_number
+
+    const quizBoxes = [
+      (session + 1) %10+1,
+      (session + 5) %10+1,
+      (session + 7) %10+1
+    ]
+      
+    for(let box of quizBoxes){
+      const boxCards = await HskApi.getCardsByUserGroup(user, box)
+      allCards = [...allCards, ...boxCards]
+        
+    }
+
+    if (allCards.length <20){
+      const unReviewed = await HskApi.getCardsByUserGroup(user, 0)
+      for (let i=0; i < 20-cards.length; i++){
+        if(unReviewed[i]){
+        allCards.push(unReviewed[i] )}
+      }
+    }
+
+    if(!allCards[0]){
+
+    }
+
+    await setCards(allCards)
+    setCurrCard(allCards[0])
+    console.log(currCard)
+    return allCards
+  }
+
+
+  async function setCard(){
+    if (!correct){
+      await HskApi.updateGroup(username, currCard.word_id, 0 )
+    }
+    if(correct && currCard.group_number == 0){
+      const userSession = await HskApi.GetSession(username)
+      console.log("session",userSession)
+      await HskApi.updateGroup(username, currCard.word_id, userSession.session_number )
+    }
+  }
+
 
   useEffect(()=> {
-
-  })
+    if(current == 0 ) return
+    
+    console.log("clicked a mark button")
+    console.log(currCard)
   
-  useEffect(()=> {
-    //const fetchData = async () => {
-      //await HskApi.
-    //}
-    console.log(correct)
+    setCard().then(()=>{
+      const nextCard = cards[current]
+      setCurrCard(nextCard)
     setReveal(false)
+    })
+
   },[current])
+
+
+
+  
+  /**
+  *
+  * get cards from relevant groups for the current session
+  * this means that the study session includes the box of the same number
+  * 
+  * if more than 20 flashcards are added from review boxes, no new cards will be added
+  */
+  useEffect(()=> { 
+    const user = localStorage.getItem('username') || null
+    if (!user) history('/')``
+    fetchData(user)
+  }, [start])
 
 
   const toggleReveal = () => {
@@ -51,23 +118,27 @@ function Quiz({username}){
     <Container className="body-space quiz">
       <h2>Memory Test</h2>
       <br></br>
+      {(!start) 
+      ? <StartCard toggle = {setStart}></StartCard>
+      :<div>
       {reveal
-      ? <CardBack simplified = "齐心协力力"  
-          traditional="齊心協力力" 
-          pinyin = "wēi bù zú dào zú dào" 
-          english = "fig. lighthearted person; Daoist immortal; supernatural entity; (in modern fiction) fairy, elf, leprechaun, etc.; supernatural being, celestial being, immortal; a person who has the power of clairvoyance or who is free from worldly cares"
-          setCorrect = {setCorrect}
-          number = {current}
-          total = {20}
-          setCurrent = {setCurrent}
+        ? <CardBack simplified = {currCard.simplified}  
+            traditional={currCard.traditional}
+            pinyin = {currCard.pinyin} 
+            english = {currCard.english}
+            setCorrect = {setCorrect}
+            number = {current}
+            total = {cards.length}
+            setCurrent = {setCurrent}
 
-        />
-      : <CardFront simplified = "齐心协力力"  
-          traditional="齊心協力力" 
+          />
+      : <CardFront simplified = {currCard.simplified} 
+          traditional={currCard.traditional} 
           number = {current} 
-          total = {20}
+          total = {cards.length}
           toggle = {toggleReveal}
           />
+      }</div>
       }
     </Container>
   )

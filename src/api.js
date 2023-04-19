@@ -46,7 +46,6 @@ class HskApi {
     return res
   }
 
-
   static async updateGroup(username, cardId, groupNumber){
     let endpoint = `cards/${username}`
     let data = {"cardId": cardId, "groupNumber": groupNumber}
@@ -68,6 +67,13 @@ class HskApi {
     return res
   }
 
+  static async GetSession(username){
+    let endpoint = `users/${username}`
+    let res = await this.request(endpoint,{},"get")
+    return res
+  }
+
+
   static async IncreaseSession(username){
     let endpoint = `users/${username}`
     let res = await this.request(endpoint,{},"put")
@@ -79,7 +85,6 @@ class HskApi {
     let res = await this.request(endpoint)
     return res
   }
-
 }
 
 export default HskApi;
