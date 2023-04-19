@@ -31,6 +31,7 @@ function Quiz({username}){
   const [start, setStart] = useState(false)
   const [currCard, setCurrCard] = useState({"simplified":"", "traditional":"", "pinyin":"","english":""}) 
   
+
   async function fetchData(user){
     let allCards = []
     const userSession = await HskApi.GetSession(user)
@@ -48,6 +49,8 @@ function Quiz({username}){
         
     }
 
+    console.log("new cards", allCards)
+
     if (allCards.length <20){
       const unReviewed = await HskApi.getCardsByUserGroup(user, 0)
       for (let i=0; i < 20-cards.length; i++){
@@ -55,14 +58,16 @@ function Quiz({username}){
         allCards.push(unReviewed[i] )}
       }
     }
-
-    if(!allCards[0]){
-
+    console.log("all cards",allCards)
+    if(!allCards[0] && start){
+      await HskApi.IncreaseSession(username)
+      console.log("session", session)
+      return
     }
 
     await setCards(allCards)
     setCurrCard(allCards[0])
-    console.log(currCard)
+    console.log("current", currCard)
     return allCards
   }
 
