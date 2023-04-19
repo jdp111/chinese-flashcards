@@ -24,13 +24,11 @@ import {
 function CardFront({simplified, traditional, number, total, toggle}){
   const history = useNavigate()
 
-
-
   return (
       <Card className="flashcard-front">
         <CardBody>
-            <Row style={{height:"15px", textAlign: "left"}}>
-                <p> {number}/{total}</p>
+            <Row className="card-head">
+                <p> {number+1}/{total}</p>
             </Row>
             <Row style={{height:"150px"}}>
                 <p>

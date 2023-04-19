@@ -21,14 +21,19 @@ import {
 } from "reactstrap";
 
 
-function CardBack({pinyin, english, simplified, traditional, number, total, setCorrect}){
+function CardBack({pinyin, english, simplified, traditional, number, total, setCorrect, setCurrent}){
   const history = useNavigate()
+
+  const handleClick = (isCorrect) => {
+    setCorrect(isCorrect)
+    setCurrent(number+1)
+  }
 
   return (
       <Card className="flashcard-front">
         <CardBody>
-            <Row style={{height:"15px", textAlign: "left"}}>
-                <p> {number}/{total}</p>
+            <Row className="card-head">
+                <p> {number+1}/{total}</p>
             </Row>
             <Row style={{height:"80px"}}>
                 <p className="chinese">{simplified}({traditional})</p>
@@ -41,12 +46,12 @@ function CardBack({pinyin, english, simplified, traditional, number, total, setC
             <br></br>
             <Row>
                 <Col>
-                    <Button size="lg"  onClick={() =>setCorrect(false)} outline color="danger"style = {{height:"100px"}}>
+                    <Button size="lg"  onClick={() =>handleClick(false)} outline color="danger" className="mark-button">
                         Mark Incorrect
                     </Button>
                 </Col>
                 <Col>
-                    <Button size="lg" onClick={() =>setCorrect(true)} outline color="success"style = {{height:"100px"}}>
+                    <Button size="lg" onClick={() =>handleClick(true)} outline color="success" className="mark-button">
                         Mark Correct
                     </Button>
                 </Col>

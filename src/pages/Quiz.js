@@ -27,16 +27,20 @@ function Quiz({username}){
   const [reveal, setReveal] = useState(false)
   const [current, setCurrent] = useState(0)
   const [correct, setCorrect] = useState(0)
+  const [cards, setCards] = useState([])
+  
+
+  useEffect(()=> {
+
+  })
   
   useEffect(()=> {
     //const fetchData = async () => {
       //await HskApi.
     //}
     console.log(correct)
-    setCurrent(current+1)
     setReveal(false)
-    setCorrect(0)
-  },[correct])
+  },[current])
 
 
   const toggleReveal = () => {
@@ -53,6 +57,10 @@ function Quiz({username}){
           pinyin = "wēi bù zú dào zú dào" 
           english = "fig. lighthearted person; Daoist immortal; supernatural entity; (in modern fiction) fairy, elf, leprechaun, etc.; supernatural being, celestial being, immortal; a person who has the power of clairvoyance or who is free from worldly cares"
           setCorrect = {setCorrect}
+          number = {current}
+          total = {20}
+          setCurrent = {setCurrent}
+
         />
       : <CardFront simplified = "齐心协力力"  
           traditional="齊心協力力" 
