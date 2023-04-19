@@ -19,6 +19,7 @@ function Footer(){
       body
       color="secondary"
       inverse
+      
     >
       <CardTitle tag="h5">
         Auto-Add Cards
@@ -26,7 +27,7 @@ function Footer(){
       <CardText>
         If you are unsure which words to learn, an automatic deck will allow you to add cards to your deck based on your skill level  
       </CardText>
-      <Button color='info' size="lg" onClick={() => history('/auto-add')}>
+      <Button style = {{width:"100%"}} color='info' size="lg" onClick={() => history('/auto-add')}>
         Auto-Add
       </Button>
     </Card>
