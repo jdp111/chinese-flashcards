@@ -13,7 +13,7 @@ function Home({username}){
             <h1 className="title">歡迎使用 CHINESELEARN!</h1>
                 <br></br>
                 {username
-                ? <Button color = 'info' size = 'lg' onClick={() => history('/test')}>
+                ? <Button color = 'info' size = 'lg' onClick={() => history('/quiz')}>
                     Start flashcard test
                     <br></br>
                     開始

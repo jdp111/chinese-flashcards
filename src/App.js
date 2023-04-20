@@ -68,9 +68,15 @@ function App() {
               </div>}
             />
             
-            <Route exact = 'true' path = '/test' element= {
+            <Route exact = 'true' path = '/quiz' element= {
               <div>
                 <Quiz username = {username}/>
+              </div>}
+            />
+
+            <Route exact = 'true' path = '/quiz/end' element= {
+              <div>
+                <Home username = {username}/>
               </div>}
             />
 
