@@ -21,6 +21,7 @@ import {
 import CardFront from "../elements/CardFront";
 import CardBack from "../elements/CardBack";
 import StartCard from "../elements/StartCard.js"
+import EndQuiz from "../elements/EndQuiz";
 
 function Quiz({username}){
   const history = useNavigate()
@@ -58,7 +59,11 @@ function Quiz({username}){
         allCards.push(unReviewed[i] )}
       }
     }
+
     if(!allCards[0] && start){
+      console.log("triggered no flashcards")
+      console.log(allCards)
+      console.log("current", current)
       await HskApi.IncreaseSession(username)
       setStart(false)
       return
@@ -88,7 +93,6 @@ function Quiz({username}){
     if (current == cards.length){
       console.log("finished")
       await HskApi.IncreaseSession(username)
-      history('/quiz/end')
       return
     }
     const nextCard = cards[current]
@@ -130,30 +134,32 @@ function Quiz({username}){
 
   return (
     <Container className="body-space quiz">
-      <h2>Memory Test</h2>
+      {(current != cards.length)
+      ?  <div><h2>Memory Test</h2>
       <br></br>
       {(!start) 
-      ? <StartCard toggle = {setStart}></StartCard>
-      :<div>
-      {reveal
-        ? <CardBack simplified = {currCard.simplified}  
-            traditional={currCard.traditional}
-            pinyin = {currCard.pinyin} 
-            english = {currCard.english}
-            setCorrect = {setCorrect}
-            number = {current}
-            total = {cards.length}
-            setCurrent = {setCurrent}
+        ? <StartCard toggle = {setStart}></StartCard>
+        :<div>{reveal
+            ? <CardBack simplified = {currCard.simplified}  
+                traditional={currCard.traditional}
+                pinyin = {currCard.pinyin} 
+                english = {currCard.english}
+                setCorrect = {setCorrect}
+                number = {current}
+                total = {cards.length}
+                setCurrent = {setCurrent}
 
-          />
-      : <CardFront simplified = {currCard.simplified} 
-          traditional={currCard.traditional} 
-          number = {current} 
-          total = {cards.length}
-          toggle = {toggleReveal}
-          />
+              />
+            : <CardFront simplified = {currCard.simplified} 
+                traditional={currCard.traditional} 
+                number = {current} 
+                total = {cards.length}
+                toggle = {toggleReveal}
+                />
+          }</div>
       }</div>
-      }
+      : <EndQuiz username = {username} emptyQuiz = {!cards.length}></EndQuiz>
+    }
     </Container>
   )
 

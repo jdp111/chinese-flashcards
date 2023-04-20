@@ -39,3 +39,10 @@
     height: 100px;
     width: 100%;
 }
+
+.end-button{
+    width: 280px;
+    height:130px;
+    margin-left: 4%;
+    margin-right: 4%;
+}
