@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/Home.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 import {Container,Button} from "reactstrap";
 
+
 function Home({username}){
     const history = useNavigate()
+    useEffect(() => {
+
+    }, [])
     return(
         <Container className="body-space homepage">
             

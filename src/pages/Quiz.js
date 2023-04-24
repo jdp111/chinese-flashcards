@@ -27,88 +27,88 @@ function Quiz({username}){
   const history = useNavigate()
   const [reveal, setReveal] = useState(false)
   const [current, setCurrent] = useState(0)
-  const [correct, setCorrect] = useState(0)
-  const [cards, setCards] = useState([{}])
+  const [cards, setCards] = useState([])
   const [start, setStart] = useState(false)
+  const [end, setEnd] = useState(false)
   const [currCard, setCurrCard] = useState({"simplified":"", "traditional":"", "pinyin":"","english":""}) 
   const [session, setSession] = useState(0)
 
-  async function fetchData(user){
-    let allCards = []
-    const userSession = await HskApi.GetSession(user)
-
-    setSession(userSession.session_number)
-
-    const quizBoxes = [
-      (session + 1) %10+1,
-      (session + 5) %10+1,
-      (session + 7) %10+1
-    ]
-      
-    for(let box of quizBoxes){
-      const boxCards = await HskApi.getCardsByUserGroup(user, box)
-      allCards = [...allCards, ...boxCards]
-        
-    }
 
 
-    if (allCards.length <20){
-      const unReviewed = await HskApi.getCardsByUserGroup(user, 0)
-      for (let i=0; i < 20-cards.length; i++){
-        if(unReviewed[i]){
-        allCards.push(unReviewed[i] )}
-      }
-    }
-
-    if(!allCards[0] && start){
-      console.log("triggered no flashcards")
-      console.log(allCards)
-      console.log("current", current)
-      await HskApi.IncreaseSession(username)
-      setStart(false)
-      return
-    }
-
-    await setCards(allCards)
-    setCurrCard(allCards[0])
-    console.log(allCards)
-    return allCards
-  }
-
-
-  async function setCard(){
+  async function nextCard(correct){
+    console.log("condition for add to completed", correct, currCard.group_number, (session-1))
     if (!correct){
       console.log("marking false")
       const newGroup = await HskApi.updateGroup(username, currCard.word_id, 0 )
-      console.log("placed in group", newGroup.group_number)
+      console.log("marked incorrect, placing in group", newGroup.group_number)
     }
     else if(correct && currCard.group_number == 0){
       const newGroup = await HskApi.updateGroup(username, currCard.word_id, session)
+      console.log("group was 0, setting to group ", newGroup.group_number)
     }
-    else if(correct && currCard.group_number == session - 1){
-      const newGroup = await HskApi.updateGroup(username, currCard.word_id, 11)
     
+    else if(correct && currCard.group_number == session - 2){
+      const newGroup = await HskApi.updateGroup(username, currCard.word_id, 11)
+      console.log("you are done with this card, setting to group", newGroup.group_number)
     }
-    console.log(current, cards.length)
-    if (current == cards.length){
+    console.log(current +1, cards.length)
+
+    if (current+1 == cards.length){
       console.log("finished")
+      setEnd(true)
       await HskApi.IncreaseSession(username)
       return
     }
     const nextCard = cards[current]
     console.log(nextCard)
     setCurrCard(nextCard)
+    setCurrent(current+1)
+    setReveal(false)
   }
 
 
-  useEffect(()=> {
-    if(current == 0 ) return
-  
-    setCard().then(()=>{
-    setReveal(false)
-    })
+  async function startQuiz(){
+    let allCards = []
+    const userSession = await HskApi.GetSession(username)
+    const session_number = userSession.session_number
+    const quizBoxes = [
+      (session_number + 1) %10+1,
+      (session_number + 5) %10+1,
+      (session_number + 7) %10+1
+    ]
+      
+    for(let box of quizBoxes){
+      const boxCards = await HskApi.getCardsByUserGroup(username, box)
+      console.log("cards from box",box,boxCards)
+      allCards = [...allCards, ...boxCards]
+    }
 
-  },[current])
+    if (allCards.length <20){
+      
+      const unReviewed = await HskApi.getCardsByUserGroup(username, 0)
+      for (let i=0; i < 20-cards.length; i++){
+        if(unReviewed[i]){
+        allCards.push(unReviewed[i] )}
+      }
+      console.log("adding cards from unreviewed")
+    }
+
+    if(!allCards.length){
+      console.log("triggered no flashcards")
+      const newSession = await HskApi.IncreaseSession(username)
+      setStart(false)
+      setEnd(true)
+      return
+    }
+
+    setSession(session_number)
+    console.log("session", session_number)
+    setCards(allCards)
+    setCurrCard(allCards[0])
+    console.log(allCards)
+    setStart(true)
+    return allCards
+  }
 
 
 
@@ -120,12 +120,6 @@ function Quiz({username}){
   * 
   * if more than 20 flashcards are added from review boxes, no new cards will be added
   */
-  useEffect(()=> { 
-    console.log("starting")
-    const user = localStorage.getItem('username') || null
-    if (!user) history('/')``
-    fetchData(user)
-  }, [start])
 
 
   const toggleReveal = () => {
@@ -134,17 +128,17 @@ function Quiz({username}){
 
   return (
     <Container className="body-space quiz">
-      {(current != cards.length)
+      {(!end)
       ?  <div><h2>Memory Test</h2>
       <br></br>
       {(!start) 
-        ? <StartCard toggle = {setStart}></StartCard>
+        ? <StartCard startQuiz = {startQuiz}></StartCard>
         :<div>{reveal
             ? <CardBack simplified = {currCard.simplified}  
                 traditional={currCard.traditional}
                 pinyin = {currCard.pinyin} 
                 english = {currCard.english}
-                setCorrect = {setCorrect}
+                nextCard = {nextCard}
                 number = {current}
                 total = {cards.length}
                 setCurrent = {setCurrent}

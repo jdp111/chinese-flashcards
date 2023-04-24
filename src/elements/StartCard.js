@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 
 
-function CardFront({toggle}){
+function CardFront({startQuiz}){
   const history = useNavigate()
 
   return (
@@ -26,7 +26,7 @@ function CardFront({toggle}){
             
             <br></br>
             <Row>
-                <Button onClick={() => toggle(true)}  size="lg" color="success"style = {{height:"100px"}}>
+                <Button onClick={startQuiz}  size="lg" color="success" style = {{height:"100px"}}>
                     <p>Start Test</p>
                 </Button>
             </Row>
