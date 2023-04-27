@@ -5,19 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import HskApi from "../api.js";
 import ListCard from "../elements/ListCard.js";
 
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardTitle,
-  CardBody,
-  Button,
-  Form,
-  FormGroup,
-  Label,
-  Input
-} from "reactstrap";
+import {Container} from "reactstrap";
 import CardFront from "../elements/CardFront";
 import CardBack from "../elements/CardBack";
 import StartCard from "../elements/StartCard.js"
@@ -34,7 +22,15 @@ function Quiz({username}){
   const [session, setSession] = useState(0)
 
 
-
+ /**
+  * cycles to the next card, and handles where the previous card goes
+  * if card marked incorrect, sets card group to zero
+  * if card marked correct and is a new card, card is added to group corresponding to current user session
+  * if card is marked correct and already asigned a group, card stays in group until a full user session cycle (ten review sessions)
+  * 
+  * increases session at the end of cards to review
+  * 
+  */
   async function nextCard(correct){
     console.log("condition for add to completed", correct, currCard.group_number, (session-1))
     if (!correct){
@@ -54,8 +50,8 @@ function Quiz({username}){
 
     if (current == cards.length){
       console.log("finished")
-      setEnd(true)
       await HskApi.IncreaseSession(username)
+      setEnd(true)
       return
     }
     const nextCard = cards[current]
@@ -65,7 +61,17 @@ function Quiz({username}){
     setReveal(false)
   }
 
-
+/**
+ * 
+ * starts the quiz
+ * adds cards to the quiz section, first from review boxes
+ * if review cards less than 20, adds cards from the new card reserve 
+ * 
+ * if no review cards or new cards, ends session and prompts user to add cards
+ * 
+ * returns list of cards in session
+ * 
+ */
   async function startQuiz(){
     let allCards = []
     const userSession = await HskApi.GetSession(username)
@@ -94,7 +100,7 @@ function Quiz({username}){
 
     if(!allCards.length){
       console.log("triggered no flashcards")
-      const newSession = await HskApi.IncreaseSession(username)
+      await HskApi.IncreaseSession(username)
       setStart(false)
       setEnd(true)
       return
