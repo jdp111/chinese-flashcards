@@ -28,7 +28,7 @@ function NavbarSetup(args) {
         <Collapse isOpen={isOpen} navbar>
           <Nav tabs = {true} fill = {true} className="me-auto" navbar>
             <NavItem>
-              <NavLink className='navigator' href="/test">
+              <NavLink className='navigator' href="/quiz">
                 New Test
               </NavLink>
             </NavItem>
@@ -49,11 +49,11 @@ function NavbarSetup(args) {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <NavItem href="/test">Current Cards</NavItem>
+                  <NavItem href="/add">Current Cards</NavItem>
               </DropdownItem>
               <DropdownItem divider />
               <DropdownItem>
-                  <NavItem href="/test">Completed Cards</NavItem>
+                  <NavItem href="/add">Completed Cards</NavItem>
               </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

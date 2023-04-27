@@ -18,7 +18,7 @@ function Add({username}){
     <h1> Auto Add</h1>
     <p className="subtitle">Choose your Chinese learning level:</p>
     <Row className=" g-0 align-items-center">
-        <AddButton lvl = "1" grade = "Kindergarten" />
+        <AddButton lvl = "1" grade = "Kindergarten" username = {username}/>
         <AddButton lvl = "2" grade = "Third Grade"  username = {username}/>
         <AddButton lvl = "3" grade = "Sixth Grade"  username = {username}/>
         <AddButton lvl = "4" grade = "Middle School"  username = {username}/>

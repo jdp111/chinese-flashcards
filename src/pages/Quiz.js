@@ -26,7 +26,7 @@ import EndQuiz from "../elements/EndQuiz";
 function Quiz({username}){
   const history = useNavigate()
   const [reveal, setReveal] = useState(false)
-  const [current, setCurrent] = useState(0)
+  const [current, setCurrent] = useState(1)
   const [cards, setCards] = useState([])
   const [start, setStart] = useState(false)
   const [end, setEnd] = useState(false)
@@ -51,9 +51,8 @@ function Quiz({username}){
       const newGroup = await HskApi.updateGroup(username, currCard.word_id, 11)
       console.log("you are done with this card, setting to group", newGroup.group_number)
     }
-    console.log(current +1, cards.length)
 
-    if (current+1 == cards.length){
+    if (current == cards.length){
       console.log("finished")
       setEnd(true)
       await HskApi.IncreaseSession(username)
@@ -86,7 +85,7 @@ function Quiz({username}){
     if (allCards.length <20){
       
       const unReviewed = await HskApi.getCardsByUserGroup(username, 0)
-      for (let i=0; i < 20-cards.length; i++){
+      for (let i=0; i <= 20-cards.length; i++){
         if(unReviewed[i]){
         allCards.push(unReviewed[i] )}
       }
@@ -139,14 +138,14 @@ function Quiz({username}){
                 pinyin = {currCard.pinyin} 
                 english = {currCard.english}
                 nextCard = {nextCard}
-                number = {current}
+                number = {current-1}
                 total = {cards.length}
                 setCurrent = {setCurrent}
 
               />
             : <CardFront simplified = {currCard.simplified} 
                 traditional={currCard.traditional} 
-                number = {current} 
+                number = {current-1} 
                 total = {cards.length}
                 toggle = {toggleReveal}
                 />

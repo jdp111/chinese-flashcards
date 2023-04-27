@@ -16,6 +16,7 @@ function CardBack({pinyin, english, simplified, traditional, number, total, next
   const history = useNavigate()
 
   
+  
   return (
       <Card className="flashcard-front">
         <CardBody>
@@ -27,7 +28,7 @@ function CardBack({pinyin, english, simplified, traditional, number, total, next
                 <p className="pinyin"> {pinyin}</p>
             </Row>
             <br></br>
-            <Row style={{height:"220px", textAlign: "left"}}>
+            <Row style={{height:"220px"}}>
                 <p className="english">{english}</p>
             </Row>
             <br></br>
