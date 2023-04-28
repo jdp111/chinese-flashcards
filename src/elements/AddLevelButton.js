@@ -67,10 +67,13 @@ function AddButton({lvl, grade, username}){
         if(cardsToAdd.length == 0){
             throw ["You have already added all cards from this level to your "]
         }
-        const result = await HskApi.addCards(username, cardsToAdd)
-        return
+        await HskApi.addCards(username, cardsToAdd)
+        
+        history('/quiz')
+
         }catch(e){e.map((err)=>{toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
-    }
+        
+      }
 
     return(
     <Col>

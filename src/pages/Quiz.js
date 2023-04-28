@@ -32,7 +32,7 @@ function Quiz({username}){
   * 
   */
   async function nextCard(correct){
-    console.log("condition for add to completed", correct, currCard.group_number, (session-1))
+    console.log("condition for add to completed", correct, currCard.group_number, (session + 8)%10)
     if (!correct){
       console.log("marking false")
       const newGroup = await HskApi.updateGroup(username, currCard.word_id, 0 )
@@ -43,7 +43,7 @@ function Quiz({username}){
       console.log("group was 0, setting to group ", newGroup.group_number)
     }
     
-    else if(correct && currCard.group_number == session - 2){
+    else if(correct && currCard.group_number == (session + 8)%10){
       const newGroup = await HskApi.updateGroup(username, currCard.word_id, 11)
       console.log("you are done with this card, setting to group", newGroup.group_number)
     }

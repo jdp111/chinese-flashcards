@@ -10,6 +10,7 @@ import Home from "./pages/Home.js"
 import Add from "./pages/Add.js"
 import AutoAdd from "./pages/AutoStart.js"
 import Quiz from './pages/Quiz';
+import CardList from './pages/CardList';
 
 function App() {
   const defaultUser = null
@@ -74,11 +75,13 @@ function App() {
               </div>}
             />
 
-            <Route exact = 'true' path = '/quiz/end' element= {
+            <Route exact = 'true' path = '/cards/current' element= {
               <div>
-                <Home username = {username}/>
+                <Navbar expand = {true} fixed = {"top"} username = {username}/>
+                <CardList username = {username} learned = {false}/>
               </div>}
             />
+
 
 
             

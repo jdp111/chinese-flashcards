@@ -3,21 +3,22 @@ import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/Cards.css'
 import {
-  Row,
-  Col,
-  Card,
-  CardBody,
-  Button,
-  Container,
+  Button
   
 } from "reactstrap";
 import Navbar from '../pages/Navbar.js'
 
+/**
+ * 
+ * displays "no cards" message if the session was empty
+ * displays "end quiz" message when the user completed a quiz
+ * 
+ * buttons direct the user to their current flashcards, add card page, or new quiz
+ * 
+ */
+
 function EndQuiz({emptyQuiz, username}){
   const history = useNavigate()
-    console.log(emptyQuiz)
-  const handleClick = (isCorrect) => {
-  }
 
   return (
     <div>

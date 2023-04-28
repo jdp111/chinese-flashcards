@@ -45,15 +45,13 @@ function NavbarSetup(args) {
 
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle className='navigator' nav caret>
-                Options
+                Your Cards
               </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>
-                  <NavItem href="/add">Current Cards</NavItem>
+              <DropdownMenu end>
+                <DropdownItem href="/cards/current">Current Cards
               </DropdownItem>
               <DropdownItem divider />
-              <DropdownItem>
-                  <NavItem href="/add">Completed Cards</NavItem>
+              <DropdownItem href="/cards/complete">Completed Cards 
               </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
