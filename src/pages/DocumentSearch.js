@@ -19,36 +19,21 @@ import {
   Label,
   Input
 } from "reactstrap";
+import searchDoc from "../logic_helpers/SearchDoc";
 
 
 function DocumentSearch({username, learned}){
   const history = useNavigate()
   const [userCards, setUserCards] = useState([])
   const [traditional, setTraditional] = useState(false)
+  const [text, setText] = useState('')
+  const [output, setOutput] = useState([])
 
-
-  
-    useEffect(()=>{
-        if (username){
-        try{
-        async function getCards(){
-            let cards = []
-            if(learned){
-                cards = await HskApi.getCardsByUserGroup(username,11)
-            }else{
-            const allCards = await HskApi.getCardsByUser(username)
-            cards = allCards.filter(card => !(card.group_number == 11))
-            }
-
-            return cards
-        }
-        getCards().then((cards) =>{
-        setUserCards(cards)
-        console.log(cards)})
-        }catch(e){console.log(e)}
-    }
-    },[username])
-
+  const handleSubmit = (evt) =>{
+    evt.preventDefault()
+    console.log(text)
+    searchDoc()
+  }
 
   return(
     <Container className="body-space">
@@ -65,9 +50,16 @@ function DocumentSearch({username, learned}){
         <small>make sure you select the correct type of character for your pasted text, or the results will not be accurate</small>
     <br></br>
     <br></br>
-    <Form>
-        <Input type="textarea" name="text" id="exampleText" placeholder="Paste chinese text here"/>
+    <Form onSubmit={handleSubmit} >
+        <Input maxLength={1000} type="textarea" name="text" id="exampleText" placeholder="Paste chinese text here" onChange = {(ev)=>{setText(ev.currentTarget.value)}}/>
+        <small>{text.length}/1000</small>
+        <br></br>
+        <Button type = "submit" color = "success">Search Document</Button>
     </Form>
+
+    <Card>
+
+    </Card>
     
   </Container>
   
