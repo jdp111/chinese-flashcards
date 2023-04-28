@@ -82,6 +82,13 @@ function App() {
               </div>}
             />
 
+            <Route exact = 'true' path = '/cards/complete' element= {
+              <div>
+                <Navbar expand = {true} fixed = {"top"} username = {username}/>
+                <CardList username = {username} learned = {true}/>
+              </div>}
+            />
+
 
 
             

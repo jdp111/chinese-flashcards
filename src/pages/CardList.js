@@ -50,7 +50,15 @@ function CardList({username, learned}){
   return(
     <Container className="body-space">
 
-    {userCards[0] && 
+    {(userCards[0] && learned) &&
+        <Card color="secondary" inverse>
+            <CardTitle tag = 'h1' style = {{'paddingTop': "15px", "paddingBottom": "15px"}}>
+                 Congratulations! You have learned a total of <span style={{"color":"lightgreen"}}>{userCards.length}</span> Chinese words!
+            </CardTitle>
+        </Card>
+    }
+
+    {(userCards[0] && !learned) && 
         <Card body color = "secondary" inverse>
             <CardTitle tag = 'h5' style = {{'paddingTop': "10px"}}>
             Start a quiz with your current cards:
@@ -62,7 +70,7 @@ function CardList({username, learned}){
     }
     <br></br>
     <ListCard 
-      style = {{'fontWeight':"bolder"}}
+      
       english = "English" 
       simplified='Simplified' 
       traditional='Traditional' 
