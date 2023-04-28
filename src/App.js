@@ -11,6 +11,7 @@ import Add from "./pages/Add.js"
 import AutoAdd from "./pages/AutoStart.js"
 import Quiz from './pages/Quiz';
 import CardList from './pages/CardList';
+import DocumentSearch from './pages/DocumentSearch';
 
 function App() {
   const defaultUser = null
@@ -89,6 +90,12 @@ function App() {
               </div>}
             />
 
+            <Route exact = 'true' path = '/docsearch' element= {
+              <div>
+                <Navbar expand = {true} fixed = {"top"} username = {username}/>
+                <DocumentSearch username = {username}/>
+              </div>}
+            />
 
 
             

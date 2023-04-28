@@ -38,7 +38,7 @@ function NavbarSetup(args) {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className='navigator' href="/add">
+              <NavLink className='navigator' href="/docsearch">
                 Search Document
               </NavLink>
             </NavItem>
