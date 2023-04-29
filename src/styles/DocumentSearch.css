@@ -1,0 +1,21 @@
+.group11{
+    background-color: green;
+}
+
+.group10, .group9, .group8, .group7, .group6, .group5, .group4, .group3, .group2, .group1{
+    background-color: yellow;
+}
+
+.group0{
+    background-color: grey;
+}
+
+.text-block{
+    font-size: 25px;
+    text-align: left;
+    margin: 25px;
+}
+
+.remove-button{
+    padding-left: 10px;
+}

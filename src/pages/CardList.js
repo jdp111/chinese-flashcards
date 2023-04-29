@@ -88,7 +88,8 @@ function CardList({username, learned}){
                 inDeck = {true} 
                 username = {username} 
                 key = {card.word_id} 
-                id = {card.word_id}  />)
+                id = {card.word_id}  
+                group = {card.group_number}/>)
     })}
     
     {

@@ -31,7 +31,8 @@
 .card-head {
     height: 30px;
     text-align: left; 
-    background-color:lightblue; 
+    background-color:lightblue;
+     
     font-size: 20px;
 }
 
@@ -45,4 +46,11 @@
     height:130px;
     margin-left: 4%;
     margin-right: 4%;
+}
+
+.learned{
+    background-color: rgb(45, 172, 45);
+    color: aliceblue;
+    padding: 8px;
+    border-radius: 3px;
 }
