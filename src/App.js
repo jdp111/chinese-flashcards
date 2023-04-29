@@ -15,18 +15,20 @@ import DocumentSearch from './pages/DocumentSearch';
 
 function App() {
   const defaultUser = null
-  const [username, setUsername] = useState(defaultUser)
+  const [username, setUsername] = useState(0)
 
   useEffect(()=>{
+
     async function effect() {
-    const localToken = localStorage.getItem('token') || null
-    const localUser =  localStorage.getItem('username') || null
+    const localToken =  localStorage.getItem('token') || null
+    const localUser =   localStorage.getItem('username') || null
+ 
+    setUsername(localUser)
+    console.log("username", username)
     
-    if (localToken && localUser) {
-      setUsername(localUser )
-    }
-  } effect()
-  },[])
+    } 
+    effect()
+  })
 
   
   return (

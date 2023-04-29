@@ -19,9 +19,18 @@ function Quiz({username}){
   const [end, setEnd] = useState(false)
   const [currCard, setCurrCard] = useState({"simplified":"", "traditional":"", "pinyin":"","english":""}) 
   const [session, setSession] = useState(0)
+  
 
+  useEffect(()=>{
+    console.log("quiz",username)
+    if(!username && username != 0 ){
 
- /**
+      history('/login')
+      
+    }
+  }, [username])
+ 
+  /**
   * cycles to the next card, and handles where the previous card goes
   * if card marked incorrect, sets card group to zero
   * if card marked correct and is a new card, card is added to group corresponding to current user session

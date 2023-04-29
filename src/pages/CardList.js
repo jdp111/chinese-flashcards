@@ -14,6 +14,16 @@ import {
 
 function CardList({username, learned}){
   const history = useNavigate()
+
+  useEffect(()=>{
+    console.log("quiz",username)
+    if(!username && username != 0 ){
+
+      history('/login')
+      
+    }
+  }, [username])
+  
   const [userCards, setUserCards] = useState([])
 
   

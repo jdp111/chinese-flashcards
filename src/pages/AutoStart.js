@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect }from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/Auto.css'
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,9 +9,17 @@ import {
 } from "reactstrap";
 import AddButton from "../elements/AddLevelButton";
 
-
 function Add({username}){
   const history = useNavigate()
+
+  useEffect(()=>{
+    console.log("quiz",username)
+    if(!username && username != 0 ){
+
+      history('/login')
+      
+    }
+  }, [username])
 
   return (
     <Container className="body-space">

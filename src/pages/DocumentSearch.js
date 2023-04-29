@@ -17,8 +17,19 @@ import searchDoc from "../logic_helpers/SearchDoc";
 
 
 function DocumentSearch({username}){
-  const history = useNavigate()
+    const history = useNavigate()
+    
+    useEffect(()=>{
+        console.log("quiz",username)
+        if(!username && username != 0 ){
+    
+          history('/login')
+          
+        }
+    }, [username])
+
   
+
   const [userCards, setUserCards] = useState([])
   const [traditional, setTraditional] = useState(false)
   const [text, setText] = useState('')

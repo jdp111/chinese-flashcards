@@ -22,6 +22,16 @@ import {
 
 function Add({username}){
   const history = useNavigate()
+
+  useEffect(()=>{
+    console.log("quiz",username)
+    if(!username && username != 0 ){
+
+      history('/login')
+      
+    }
+  }, [username])
+
   const [searchTerm, setSearchTerm] = useState('')
   const [searchBy, setSearchBy] = useState('english')
   const [searchedCards, setSearchedCards] = useState([])
