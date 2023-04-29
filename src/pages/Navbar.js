@@ -12,12 +12,18 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  Button
 } from 'reactstrap';
 
 function NavbarSetup(args) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  const logout = () =>{
+    localStorage.clear()
+    window.location.reload(false)
+  }
 
   return (
     <div>
@@ -58,7 +64,7 @@ function NavbarSetup(args) {
           </Nav>
 
           {args.username?
-            <NavLink className='navigator' href = "/login" >Manage Account</NavLink>
+            <Button size = 'sm' outline color='link' className='navigator' onClick={logout}>   Logout</Button>
             :
             <NavLink className='navigator' href = "/login" >Login/Register</NavLink>
           }
