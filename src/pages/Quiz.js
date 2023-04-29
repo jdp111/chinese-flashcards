@@ -9,6 +9,7 @@ import CardFront from "../elements/CardFront";
 import CardBack from "../elements/CardBack";
 import StartCard from "../elements/StartCard.js"
 import EndQuiz from "../elements/EndQuiz";
+import { ToastContainer, toast } from "react-toastify";
 
 function Quiz({username}){
   const history = useNavigate()
@@ -22,7 +23,6 @@ function Quiz({username}){
   
 
   useEffect(()=>{
-    console.log("quiz",username)
     if(!username && username != 0 ){
 
       history('/login')
@@ -40,30 +40,36 @@ function Quiz({username}){
   * 
   */
   async function nextCard(correct){
-    console.log("condition for add to completed", correct, currCard.group_number, (session + 8)%10)
+    
+    const finishedCondition = currCard.group_number == (session + 1) %11
+    
     if (!correct){
-      console.log("marking false")
       const newGroup = await HskApi.updateGroup(username, currCard.word_id, 0 )
-      console.log("marked incorrect, placing in group", newGroup.group_number)
     }
     else if(correct && currCard.group_number == 0){
       const newGroup = await HskApi.updateGroup(username, currCard.word_id, session)
-      console.log("group was 0, setting to group ", newGroup.group_number)
     }
-    
-    else if(correct && currCard.group_number == (session + 8)%10){
+    else if(correct && finishedCondition){
+      
       const newGroup = await HskApi.updateGroup(username, currCard.word_id, 11)
-      console.log("you are done with this card, setting to group", newGroup.group_number)
+      toast.success(`Congratulations! you finished learning the word ${currCard.traditional}(${currCard.simplified})`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      })
     }
 
     if (current == cards.length){
-      console.log("finished")
       await HskApi.IncreaseSession(username)
       setEnd(true)
       return
     }
     const nextCard = cards[current]
-    console.log(nextCard)
     setCurrCard(nextCard)
     setCurrent(current+1)
     setReveal(false)
@@ -84,15 +90,16 @@ function Quiz({username}){
     let allCards = []
     const userSession = await HskApi.GetSession(username)
     const session_number = userSession.session_number
+    //[0,1,3,7,9] study sequence
     const quizBoxes = [
-      (session_number + 1) %10+1,
-      (session_number + 5) %10+1,
-      (session_number + 7) %10+1
+      (session_number) %10+1,
+      (session_number + 2 ) %10+1,
+      (session_number + 6) %10+1,
+      (session_number + 8) %10+1
     ]
       
     for(let box of quizBoxes){
       const boxCards = await HskApi.getCardsByUserGroup(username, box)
-      console.log("cards from box",box,boxCards)
       allCards = [...allCards, ...boxCards]
     }
 
@@ -103,11 +110,9 @@ function Quiz({username}){
         if(unReviewed[i]){
         allCards.push(unReviewed[i] )}
       }
-      console.log("adding cards from unreviewed")
     }
 
     if(!allCards.length){
-      console.log("triggered no flashcards")
       await HskApi.IncreaseSession(username)
       setStart(false)
       setEnd(true)
@@ -115,10 +120,8 @@ function Quiz({username}){
     }
 
     setSession(session_number)
-    console.log("session", session_number)
     setCards(allCards)
     setCurrCard(allCards[0])
-    console.log(allCards)
     setStart(true)
     return allCards
   }
@@ -138,6 +141,15 @@ function Quiz({username}){
 
   return (
     <Container className="body-space quiz">
+      <ToastContainer position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnHover
+        theme="colored" />
+      
       {(!end)
       ?  <div><h2>Memory Test</h2>
       <br></br>

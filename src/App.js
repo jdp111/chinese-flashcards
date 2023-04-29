@@ -24,8 +24,6 @@ function App() {
     const localUser =   localStorage.getItem('username') || null
  
     setUsername(localUser)
-    console.log("username", username)
-    
     } 
     effect()
   })
