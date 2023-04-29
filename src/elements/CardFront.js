@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/Home.css'
 import 'react-toastify/dist/ReactToastify.css';
-import HskApi from "../api.js";
-import ListCard from "../elements/ListCard.js";
-import Footer from "../elements/Footer.js"
 import "../styles/Cards.css"
 import {
   Row,

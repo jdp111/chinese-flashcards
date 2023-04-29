@@ -10,10 +10,6 @@ import {
   Button,
 } from "reactstrap";
 
-
-
-
-
 function ListCard({traditional, simplified, pinyin, english, inDeck=true, id, username, group=12}){
     const [hidden, setHidden] = useState(false)
 
@@ -24,6 +20,7 @@ function ListCard({traditional, simplified, pinyin, english, inDeck=true, id, us
     }
 
     const handleDelete = async (evt) => {
+      evt.preventDefault()
       await HskApi.deleteCards(username,[id])
       setHidden(true)
     }

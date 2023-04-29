@@ -37,8 +37,6 @@ function CardFront({startQuiz}){
       </Card>
   )
 
-
-
 }
 
 export default CardFront

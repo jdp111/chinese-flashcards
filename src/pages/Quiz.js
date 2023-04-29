@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import '../styles/Home.css'
 import 'react-toastify/dist/ReactToastify.css';
 import HskApi from "../api.js";
-import ListCard from "../elements/ListCard.js";
 
 import {Container} from "reactstrap";
 import CardFront from "../elements/CardFront";
@@ -114,9 +113,6 @@ function Quiz({username}){
     setStart(true)
     return allCards
   }
-
-
-
   
   /**
   *

@@ -2,22 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/Home.css'
 import 'react-toastify/dist/ReactToastify.css';
-import HskApi from "../api.js";
 import ListCard from "../elements/ListCard.js";
-import Footer from "../elements/Footer.js"
 import "../styles/DocumentSearch.css"
 import {
   Container,
-  Row,
-  Col,
   Card,
-  CardTitle,
   CardBody,
   Button,
   ButtonGroup,
   Form,
-  FormGroup,
-  Label,
   Input
 } from "reactstrap";
 import searchDoc from "../logic_helpers/SearchDoc";
@@ -25,6 +18,7 @@ import searchDoc from "../logic_helpers/SearchDoc";
 
 function DocumentSearch({username}){
   const history = useNavigate()
+  
   const [userCards, setUserCards] = useState([])
   const [traditional, setTraditional] = useState(false)
   const [text, setText] = useState('')

@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import '../styles/Home.css'
 import {
-  Row,
-  Col,
   Card,
-  CardBody,
   Button,
   CardTitle,
   CardText

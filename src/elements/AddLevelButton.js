@@ -9,13 +9,10 @@ import { ToastContainer, toast } from "react-toastify";
 
 /**
  * 
- * 
  * this function handles button clicks
  * It takes the level, gets all words from level in the database,
  * then adds up to  100 cards to the collection until the number of unfinished cards
  * in a user's collection reaches exactly 100
- * 
- * 
  * 
  */
 
