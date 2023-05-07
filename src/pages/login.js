@@ -45,7 +45,7 @@ function Login({username, setUsername}){
       setUsername(usernameInput)
       history('/login')
 
-    }catch(e){e.map((err)=>{toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
+    }catch(e){e.map((err)=>{return toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
   };
   return (
     <Container className="body-space">
