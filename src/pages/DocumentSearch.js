@@ -20,11 +20,8 @@ function DocumentSearch({username}){
     const history = useNavigate()
     
     useEffect(()=>{
-        console.log("quiz",username)
         if(!username && username != 0 ){
-    
           history('/login')
-          
         }
     }, [username])
 
@@ -38,16 +35,14 @@ function DocumentSearch({username}){
   const [search, setSearch] = useState(false)
 
   const handleSubmit = async (evt) =>{
-    setSearch(true)
+    
     setLoading(true)
     evt.preventDefault()
-    console.log(text)
     const [charsArr, included] =  await searchDoc(text, username, traditional)
     setOutput(charsArr)
+    setSearch(true)
     setUserCards(included)
     setLoading(false)
-    console.log("included", userCards)
-
   }
 
   return(
