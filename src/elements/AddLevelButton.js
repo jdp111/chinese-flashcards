@@ -51,7 +51,7 @@ function AddButton({lvl, grade, username}){
           cardIndex +=1 
           }
 
-          if (lvlWords[wordIndex].id == userCards[cardIndex].word_id){
+          if (lvlWords[wordIndex].id === userCards[cardIndex].word_id){
             wordIndex += 1
             cardIndex +=1
             continue
@@ -61,14 +61,14 @@ function AddButton({lvl, grade, username}){
           wordIndex +=1
           i += 1
         }
-        if(cardsToAdd.length == 0){
-            throw ["You have already added all cards from this level to your "]
+        if(cardsToAdd.length === 0){
+            throw new Error("You have already added all cards from this level to your ")
         }
         await HskApi.addCards(username, cardsToAdd)
         
         history('/quiz')
 
-        }catch(e){e.map((err)=>{toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
+        }catch(e){e.map((err)=>{return toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
         
       }
 
