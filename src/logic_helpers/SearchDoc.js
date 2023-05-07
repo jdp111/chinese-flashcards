@@ -22,7 +22,7 @@ async function searchDoc(text, username, traditional){
 
             for (let i = 0; i <char.length;i++ ){
                 if (characters[index + firstIndex+i].group == 11) continue
-                characters[index + firstIndex+i].group = card.group_number
+                characters[index + firstIndex+i].group = card.group_number || 1
             
             }
                 
