@@ -1,6 +1,6 @@
 import axios from "axios";
 require("dotenv").config();
-console.log(process.env.API_URL)
+console.log("api url" , process.env.API_URL)
 const BASE_API_URL = process.env.API_URL || "http://localhost:3001";
 
 
