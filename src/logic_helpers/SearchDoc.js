@@ -3,7 +3,6 @@ import HskApi from "../api"
 
 async function searchDoc(text, username, traditional){
     let characters = text.split('').map((char) => {return {"char":char, "group":null}})
-    console.log("user",username)
     const cardList = await HskApi.getCardsByUser(username) 
     let included = []
 
@@ -15,7 +14,6 @@ async function searchDoc(text, username, traditional){
 
         function findAll(string, index = 0){
             const firstIndex = string.indexOf(char)
-            console.log(firstIndex)
             if(firstIndex < 0){
                 return 
             }
@@ -36,7 +34,6 @@ async function searchDoc(text, username, traditional){
         if (include) {included.push(card)}
     }
                 
-    console.log("included", included)
     return [characters, included]
 
   }
