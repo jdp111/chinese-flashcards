@@ -1,6 +1,7 @@
 import axios from "axios";
-
-const BASE_API_URL = "http://localhost:3001";
+require("dotenv").config();
+console.log(process.env.API_URL)
+const BASE_API_URL = process.env.API_URL || "http://localhost:3001";
 
 
 class HskApi {
