@@ -47,7 +47,7 @@ function ListCard({traditional, simplified, pinyin, english, inDeck=true, id, us
         Add To Deck
         </Button>
         }
-        {(group == 11) &&
+        {(group === 11) &&
           <span className="learned">learned</span>
         }
         {(group < 11) &&
