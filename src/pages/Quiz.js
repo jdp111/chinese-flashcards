@@ -24,9 +24,7 @@ function Quiz({username}){
 
   useEffect(()=>{
     if(!username && username != 0 ){
-
       history('/login')
-      
     }
   }, [username])
  
@@ -41,17 +39,17 @@ function Quiz({username}){
   */
   async function nextCard(correct){
     
-    const finishedCondition = currCard.group_number == (session + 1) %11
+    const finishedCondition = currCard.group_number === (session + 1) %11
     
     if (!correct){
-      const newGroup = await HskApi.updateGroup(username, currCard.word_id, 0 )
+      await HskApi.updateGroup(username, currCard.word_id, 0 )
     }
-    else if(correct && currCard.group_number == 0){
-      const newGroup = await HskApi.updateGroup(username, currCard.word_id, session)
+    else if(correct && currCard.group_number === 0){
+      await HskApi.updateGroup(username, currCard.word_id, session)
     }
     else if(correct && finishedCondition){
       
-      const newGroup = await HskApi.updateGroup(username, currCard.word_id, 11)
+      HskApi.updateGroup(username, currCard.word_id, 11)
       toast.success(`Congratulations! you finished learning the word ${currCard.traditional}(${currCard.simplified})`, {
         position: "top-center",
         autoClose: 5000,
@@ -64,7 +62,7 @@ function Quiz({username}){
       })
     }
 
-    if (current == cards.length){
+    if (current === cards.length){
       await HskApi.IncreaseSession(username)
       setEnd(true)
       return
