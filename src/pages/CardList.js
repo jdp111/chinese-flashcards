@@ -97,9 +97,15 @@ function CardList({username, learned}){
     {
       !userCards[0] &&
       <Card body color = "secondary" inverse>
-        <CardTitle tag = 'h5' style = {{'paddingTop': "10px"}}>
+        {learned
+        ?<CardTitle tag = 'h5' style = {{'paddingTop': "10px"}}>
+            No learned cards yet, keep studying to learn new words
+          </CardTitle>
+        :<CardTitle tag = 'h5' style = {{'paddingTop': "10px"}}>
            No cards to review, add new cards to continue learning:
         </CardTitle>
+        }
+        
        <Button style = {{width:"100%"}} color='info' size="lg" onClick={() => history('/add')}>
             Add New Cards
        </Button>
