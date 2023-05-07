@@ -1,7 +1,7 @@
 import axios from "axios";
-console.log("api url" , process.env.API_URL)
+console.log("api url" , process.env.REACT_APP_API_URL)
 console.log("CI",process.env.CI)
-const BASE_API_URL = process.env.API_URL || "http://localhost:3001";
+const BASE_API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 
 class HskApi {
