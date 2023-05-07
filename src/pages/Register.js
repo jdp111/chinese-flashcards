@@ -33,10 +33,10 @@ function Register(props){
         return;
       }
 
-      if (!(password == rePassword)){
+      if (!(password === rePassword)){
         setPassword('')
         setRePassword('')
-        throw ["re-typed password must match"]
+        throw new Error("re-typed password must match")
       }
 
       
@@ -50,7 +50,7 @@ function Register(props){
 
       history('/')
 
-    }catch(e){e.map((err)=>{toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
+    }catch(e){e.map((err)=>{return toast.error(err, {className:"toast-message", position: toast.POSITION.TOP_CENTER})})}
   };
 
   return (
