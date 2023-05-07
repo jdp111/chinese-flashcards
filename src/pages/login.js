@@ -31,7 +31,7 @@ function Login({username, setUsername}){
     ev.preventDefault();
     try{
       if (!usernameInput || !password) {
-        return;
+        throw ["must enter username and password"]
       }
 
       
