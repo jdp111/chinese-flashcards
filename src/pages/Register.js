@@ -36,7 +36,7 @@ function Register(props){
       if (!(password === rePassword)){
         setPassword('')
         setRePassword('')
-        throw new Error("re-typed password must match")
+        throw ["re-typed password must match"]
       }
 
       
