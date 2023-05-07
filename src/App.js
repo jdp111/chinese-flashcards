@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { Route, Routes } from "react-router-dom";
-import HskApi from "./api"
 import './App.css';
 import Navbar from "./pages/Navbar.js"
 import Login from "./pages/login.js"
@@ -14,13 +13,11 @@ import CardList from './pages/CardList';
 import DocumentSearch from './pages/DocumentSearch';
 
 function App() {
-  const defaultUser = null
   const [username, setUsername] = useState(0)
 
   useEffect(()=>{
 
     async function effect() {
-    const localToken =  localStorage.getItem('token') || null
     const localUser =   localStorage.getItem('username') || null
  
     setUsername(localUser)
