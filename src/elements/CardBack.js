@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import '../styles/Home.css'
 import 'react-toastify/dist/ReactToastify.css';
 import "../styles/Cards.css"
@@ -13,10 +12,7 @@ import {
 
 
 function CardBack({pinyin, english, simplified, traditional, number, total, nextCard}){
-  const history = useNavigate()
 
-  
-  
   return (
       <Card className="flashcard-front">
         <CardBody>
