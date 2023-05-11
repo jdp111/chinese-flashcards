@@ -37,9 +37,12 @@ Spaced repetition works like this:
 ### View/Delete cards
 A user can view cards in their collection that have yet to be studied in a list format. The english translation and pinyin are also shown, so if the user wants to review all their cards, they are available here. Users can also view learned cards in a separate section. Any card can be removed from a user's collection, whether already learned or not.
 
-### More Info
-For more information about features, read the about section on the app [here]()
+## HSK API
+The API used for this app is my own creation. The chinese word database was scrubbed from https://www.digmandarin.com/.
+The API can be accessed without a key for GET operations using this URL: https://hsk-database-production.up.railway.app/words.
+Users can edit their own profile with a key given at login.
 
+For more information about the API, visit the github repo: https://github.com/jdp111/hsk-database
 
 ### `npm start`
 
