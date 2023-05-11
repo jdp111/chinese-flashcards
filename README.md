@@ -4,10 +4,19 @@ Access site at https://chinese-flashcards-production.up.railway.app/
 This project was created using react JS web framework, and accesses an [API](https://github.com/jdp111/hsk-database) to save user information and store a Chinese dictionary.
 No sensitive information is stored on this site, and passwords are encrypted for your security. 
 
-### Purpose
+## Purpose
 I created this app as a way to help people learn chinese vocabulary in a more efficient way.
 It is hard to get motivated to learn a new language, and I hope this app will help people who are struggling to learn on their own
 Users can save flashcards and start review sessions at their own pace, and the app will take care of the rest.
+
+## Features
+### Login/Signup
+A user only needs to choose a username and password, and they will be able to access all features of this app. This app will never prompt you for email, first name, last name or any other sensitive information. Your security is important to me.
+
+### Add Cards
+Users can add cards by searching for words individually or automatically adding from a user-specified reading level.
+Reading levels are based on the Hanyu Shuiping Kaoshi (HSK) vocab list.
+When a user chooses to auto add cards, up to one hundred (100) cards are pulled from the specified HSK level and added to the users "unlearned" card collection.
 
 ### Spaced repetition algorithm
 Spaced repetition is a proven learning technique that optimizes the learning process by spacing out the intervals between reviewing information. By using this method, the app can help users retain Chinese vocabulary more effectively.
@@ -21,65 +30,22 @@ Spaced repetition works like this:
 4. when the user marks a word correct the fifth time, the card is added to the user's "learned" pile
 5. If at any time a flashcard is marked "incorrect", the card will be pushed back to the "unlearned" pile to start a new review of the word
 
+### Character search
+ When a user has added cards to their collection, this feature will allow them to see how much of a chinese document they will be able to understand.
+ The feature includes a text box. The user is prompted to copy and paste chinese text into the text box. The app then shows the chinese text with highlights where a word matches a word from the users deck. the cards feom the deck are also listed below the text for easy translation.
+ 
+### View/Delete cards
+A user can view cards in their collection that have yet to be studied in a list format. The english translation and pinyin are also shown, so if the user wants to review all their cards, they are available here. Users can also view learned cards in a separate section. Any card can be removed from a user's collection, whether already learned or not.
+
+### More Info
+For more information about features, read the about section on the app [here]()
+
+
 ### `npm start`
 
 Runs the app in the development mode.\
+#### This command will not connect the app to the database. You can clone the database code onto your machine and run "start-all" to run both database and the app
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
