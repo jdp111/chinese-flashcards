@@ -1,10 +1,25 @@
-# Getting Started with Create React App
+# ChineseLearn
+Access site at https://chinese-flashcards-production.up.railway.app/
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created using react JS web framework, and accesses an [API](https://github.com/jdp111/hsk-database) to save user information and store a Chinese dictionary.
+No sensitive information is stored on this site, and passwords are encrypted for your security. 
 
-## Available Scripts
+### Purpose
+I created this app as a way to help people learn chinese vocabulary in a more efficient way.
+It is hard to get motivated to learn a new language, and I hope this app will help people who are struggling to learn on their own
+Users can save flashcards and start review sessions at their own pace, and the app will take care of the rest.
 
-In the project directory, you can run:
+### Spaced repetition algorithm
+Spaced repetition is a proven learning technique that optimizes the learning process by spacing out the intervals between reviewing information. By using this method, the app can help users retain Chinese vocabulary more effectively.
+
+When users add flashcards to their deck and review them in a quiz, the app will show the cards next in line according to the algorithm.
+
+Spaced repetition works like this:
+1. the user will see cards in the "unlearned" pile first, and mark whether they know the card or not
+2. if the user knows the card, it will be added to a review pile
+3. cards that are continually marked "correct" by the user will show up less frequently in following sessions until the user has reviewed the word 5 times
+4. when the user marks a word correct the fifth time, the card is added to the user's "learned" pile
+5. If at any time a flashcard is marked "incorrect", the card will be pushed back to the "unlearned" pile to start a new review of the word
 
 ### `npm start`
 
